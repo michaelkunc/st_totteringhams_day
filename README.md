@@ -6,3 +6,21 @@ It was first created in 2002.
 This tool will tell the user the earliest possible occurance of St Totteringham's Day based on the current table and the remaining schedule.
 
 Upon load the tool will fetch the current table as well as the remaining schedule.
+
+# MVP User Story
+
+As a user I want to be able to see the earliest day that St. Totteringham's Day will occur. It should be based on the latest table and schedule data.
+
+The script will assume that Arsenal win and Spurs lose every game until St Totteringham's Day occurs.
+
+It should return a matchday in the form of a date and it should assume that Arsenal win and Spurs lose on that day.
+
+# Psudeocode
+
+1. Check the table to get the current points and number of matches for both Arsenal & Sp*rs.
+
+2. Determine how many points are available for Sp*rs.
+
+3. Is that number less than the current difference?
+
+4
