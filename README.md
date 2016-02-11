@@ -21,6 +21,6 @@ It should return a matchday in the form of a date and it should assume that Arse
 
 2. Determine how many points are available for Sp*rs.
 
-3. Is that number less than the current difference?
+3. Is that number less than the current difference? If so, then we have achieved St. Totts. If not, we continue the iteration.
 
-4
+4. Assume that Arsenal wins and Sp*rs loses. And re-do the iteration.
