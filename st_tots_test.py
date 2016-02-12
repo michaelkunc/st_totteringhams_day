@@ -3,6 +3,9 @@ import st_tots
 
 class ST_TOTSTESTS(unittest.TestCase):
 
+	def test_st_tots_init(self):
+		self.assertEqual('i am a class', st_tots.__init__())
+
 	def test_get_table(self):
 		self.assertEqual('is this thing on?', st_tots.get_table())
 
@@ -20,7 +23,6 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_get_available_points(self):
 		games_played = 25
 		self.assertEqual(39, st_tots.get_available_points(games_played))
-
 
 if __name__ == '__main__':
 	unittest.main()
