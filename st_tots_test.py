@@ -26,5 +26,11 @@ class ST_TOTSTESTS(unittest.TestCase):
 		class_name = str(type(st_tots.make_soup(url)))
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
+	def test_get_team(self):
+		url = 'http://www.premierleague.com/en-gb/matchday/league-table.html'
+		tag = 'td'
+		team = 'Arsenal'
+		self.assertEqual("Arsenal", st_tots.get_team(url, tag, team))
+
 if __name__ == '__main__':
 	unittest.main()

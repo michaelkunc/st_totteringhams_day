@@ -31,5 +31,7 @@ def make_soup(url):
     html = urlopen(url).read()
     return BeautifulSoup(html, "lxml")
 
-def get_points(url):
+def get_team(url, tag, team):
     soup = make_soup(url)
+    club = soup.find_all(tag, text='team')
+    return club
