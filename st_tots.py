@@ -31,7 +31,13 @@ def make_soup(url):
     html = urlopen(url).read()
     return BeautifulSoup(html, "lxml")
 
+#this isn't working exactly right, so I'm going to build
+#the method line by line
+#I'm entering this in ipython line by line and it's working 
+#as expected there. but this method is returning an empty array.
+#a bit of a loss as to why that is.
 def get_team(url, tag, team):
-    soup = make_soup(url)
+    html = urlopen(url).read()
+    soup = BeautifulSoup(html, 'lxml')
     club = soup.find_all(tag, text='team')
     return club
