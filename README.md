@@ -1,5 +1,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/michaelkunc/st_totteringhams_day/badge.svg?branch=master)](https://coveralls.io/github/michaelkunc/st_totteringhams_day?branch=master)
 
+
+[![Build Status](https://travis-ci.org/michaelkunc/st_totteringhams_day.svg?branch=master)](https://travis-ci.org/michaelkunc/st_totteringhams_day)
+
+
 # When is St Totteringham's Day?
 All Arsenal FC Supporters look forward to a very special day of the year: St Totteringham's Day. This is the day when it is mathematically assured that Arsenal FC will finish above Tottenham Hotspur.
 
