@@ -2,7 +2,13 @@ language: python
 python:
 - "2.7"
 
-script: python st_tots_test.py
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+script:
+  python st_tots_test.py
+  coverage run --source= st_tots_test.py
 
 after_success:
 - coveralls
