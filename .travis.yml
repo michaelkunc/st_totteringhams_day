@@ -8,7 +8,6 @@ install:
 
 script:
   python st_tots_test.py
-  coverage run --source= st_tots_test.py
 
 after_success:
 - coveralls
