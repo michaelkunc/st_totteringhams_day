@@ -37,5 +37,10 @@ class ST_TOTSTESTS(unittest.TestCase):
 		team_index = 4
 		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
 
+	def test_get_team_games_played(self):
+		min_games_in_season = 0
+		max_games_in_season = 38
+		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		self.assertTrue(min_games_in_season <= games_played <= max_games_in_season)
 if __name__ == '__main__':
 	unittest.main()

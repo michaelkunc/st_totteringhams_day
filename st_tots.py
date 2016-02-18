@@ -31,8 +31,14 @@ def get_team_name(url, tag, team):
     soup = make_soup(url)
     return soup.find(tag, text=team)
  
- 
+
 def get_team_data(url, tag, team):
     team = get_team_name(url, tag, team)
     return team.parent()
+
+def get_team_games_played(url, tag, team):
+    team_data = get_team_data(url, tag, team)
+    games_played_index = 5
+    return int(team_data[games_played_index].get_text())
+
     
