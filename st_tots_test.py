@@ -5,7 +5,8 @@ class ST_TOTSTESTS(unittest.TestCase):
 	@classmethod
 	def setUpClass(ST_TOTSTESTS):
 		ST_TOTSTESTS.url = 'http://www.premierleague.com/en-gb/matchday/league-table.html'
-
+		ST_TOTSTESTS.tag = 'td'
+		ST_TOTSTESTS.team = 'Arsenal'
 
 	def test_get_table(self):
 		self.assertEqual('is this thing on?', st_tots.get_table())
@@ -30,15 +31,11 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
 	def test_get_team_name(self):
-		tag = 'td'
-		team = 'Arsenal'
-		self.assertEqual("Arsenal", st_tots.get_team_name(ST_TOTSTESTS.url, tag, team).get_text())
+		self.assertEqual("Arsenal", st_tots.get_team_name(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team).get_text())
 
 	def test_team_data(self):
-		tag = 'td'
-		team = 'Arsenal'
 		team_index = 4
-		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.url, tag, team)[team_index].get_text())
+		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
 
 if __name__ == '__main__':
 	unittest.main()
