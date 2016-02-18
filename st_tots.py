@@ -27,9 +27,12 @@ def make_soup(url):
     return BeautifulSoup(html, "lxml")
 
 
-def get_team(url, tag, team):
-    # html = urlopen(url).read()
-    # soup = BeautifulSoup(html, 'lxml')
+def get_team_name(url, tag, team):
     soup = make_soup(url)
     return soup.find(tag, text=team)
+ 
+ 
+def get_team_data(url, tag, team):
+    team = get_team_name(url, tag, team)
+    return team.parent()
     
