@@ -26,8 +26,10 @@ def make_soup(url):
     html = urlopen(url).read()
     return BeautifulSoup(html, "lxml")
 
+
 def get_team(url, tag, team):
-    html = urlopen(url).read()
-    soup = BeautifulSoup(html, 'lxml')
-    return soup.find_all(tag, text=team)
+    # html = urlopen(url).read()
+    # soup = BeautifulSoup(html, 'lxml')
+    soup = make_soup(url)
+    return soup.find(tag, text=team)
     

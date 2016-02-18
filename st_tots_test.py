@@ -30,7 +30,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		url = 'http://www.premierleague.com/en-gb/matchday/league-table.html'
 		tag = 'td'
 		team = 'Arsenal'
-		self.assertEqual("Arsenal", st_tots.get_team(url, tag, team)[0].get_text())
+		self.assertEqual("Arsenal", st_tots.get_team(url, tag, team).get_text())
 
 if __name__ == '__main__':
 	unittest.main()
