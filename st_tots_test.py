@@ -7,6 +7,10 @@ class ST_TOTSTESTS(unittest.TestCase):
 		ST_TOTSTESTS.url = 'http://www.premierleague.com/en-gb/matchday/league-table.html'
 		ST_TOTSTESTS.tag = 'td'
 		ST_TOTSTESTS.team = 'Arsenal'
+		ST_TOTSTESTS.points_per_win = 3
+		ST_TOTSTESTS.games_per_season = 38
+		ST_TOTSTESTS.max_points = ST_TOTSTESTS.games_per_season * ST_TOTSTESTS.points_per_win
+		ST_TOTSTESTS.min_points = 0
 
 	def test_get_table(self):
 		self.assertEqual('is this thing on?', st_tots.get_table())
@@ -37,10 +41,17 @@ class ST_TOTSTESTS(unittest.TestCase):
 		team_index = 4
 		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
 
+#woud like to fix these 'magic numbers' in this test method
 	def test_get_team_games_played(self):
 		min_games_in_season = 0
 		max_games_in_season = 38
 		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		self.assertTrue(min_games_in_season <= games_played <= max_games_in_season)
+
+	def test_get_team_points(self):
+		points = st_tots.get_team_points(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		self.assertTrue(ST_TOTSTESTS.min_points <= points <= ST_TOTSTESTS.max_points)
+
+		
 if __name__ == '__main__':
 	unittest.main()
