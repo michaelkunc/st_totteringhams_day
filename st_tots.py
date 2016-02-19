@@ -5,10 +5,6 @@ TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 GAMES_IN_SEASON = 38
 POINTS_PER_WIN = 3
 
-# will retrieve current table data for Arsenal and Sp*rs
-def get_table():
-    return 'is this thing on?'
-
 
 def compare_difference_available(point_difference, available_points):
     return point_difference > available_points
@@ -36,14 +32,20 @@ def get_team_data(url, tag, team):
     team = get_team_name(url, tag, team)
     return team.parent()
 
+
 def get_team_games_played(url, tag, team):
     team_data = get_team_data(url, tag, team)
     games_played_index = 5
     return int(team_data[games_played_index].get_text())
 
+
 def get_team_points(url, tag, team):
     team_data = get_team_data(url, tag, team)
     points_index = -1
     return int(team_data[points_index].get_text())
+    
+
+# def soup_to_int(result_set, index):
+#     return int(result_set[index].get_text())
 
     

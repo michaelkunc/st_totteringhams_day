@@ -56,5 +56,11 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertTrue(ST_TOTSTESTS.min_points <= points <= ST_TOTSTESTS.max_points)
 
 
+	def test_soup_to_int(self):
+		team_data = st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		games_played_index = 5
+		self.assertTrue('failure', type(st_tots.soup_to_int(team_data, games_played_index)))
+
+
 if __name__ == '__main__':
 	unittest.main()
