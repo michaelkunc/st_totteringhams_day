@@ -26,7 +26,7 @@ def make_soup(url):
 def get_team_name(url, tag, team):
     soup = make_soup(url)
     return soup.find(tag, text=team)
- 
+
 
 def get_team_data(url, tag, team):
     team = get_team_name(url, tag, team)
@@ -43,9 +43,8 @@ def get_team_points(url, tag, team):
     team_data = get_team_data(url, tag, team)
     points_index = -1
     return int(team_data[points_index].get_text())
-    
 
-# def soup_to_int(result_set, index):
-#     return int(result_set[index].get_text())
 
-    
+def soup_to_int(result_set, index):
+    return int(result_set[index].get_text())
+
