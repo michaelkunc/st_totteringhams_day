@@ -36,13 +36,13 @@ def get_team_data(url, tag, team):
 def get_team_games_played(url, tag, team):
     team_data = get_team_data(url, tag, team)
     games_played_index = 5
-    return int(team_data[games_played_index].get_text())
+    return soup_to_int(team_data, games_played_index)
 
 
 def get_team_points(url, tag, team):
     team_data = get_team_data(url, tag, team)
     points_index = -1
-    return int(team_data[points_index].get_text())
+    return soup_to_int(team_data, points_index)
 
 
 def soup_to_int(result_set, index):
