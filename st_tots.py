@@ -46,3 +46,5 @@ def get_team_points(url, tag, team):
 
 def soup_to_int(result_set, index):
     return int(result_set[index].get_text())
+
+
