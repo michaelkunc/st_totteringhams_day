@@ -4,6 +4,7 @@ from urllib2 import urlopen
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 GAMES_IN_SEASON = 38
 POINTS_PER_WIN = 3
+TABLE_INDEXES = {'points': -1, 'games_played': 5}
 
 
 def compare_difference_available(point_difference, available_points):
@@ -35,16 +36,13 @@ def get_team_data(url, tag, team):
 
 def get_team_games_played(url, tag, team):
     team_data = get_team_data(url, tag, team)
-    games_played_index = 5
-    return soup_to_int(team_data, games_played_index)
+    return soup_to_int(team_data, TABLE_INDEXES['games_played'])
 
 
 def get_team_points(url, tag, team):
     team_data = get_team_data(url, tag, team)
-    points_index = -1
-    return soup_to_int(team_data, points_index)
+    return soup_to_int(team_data, TABLE_INDEXES['points'])
 
 
 def soup_to_int(result_set, index):
     return int(result_set[index].get_text())
-
