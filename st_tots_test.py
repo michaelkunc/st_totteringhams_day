@@ -61,6 +61,9 @@ class ST_TOTSTESTS(unittest.TestCase):
 		games_played_index = 5
 		self.assertEqual(int, type(st_tots.soup_to_int(team_data, games_played_index)))
 
+	# def test_get_initial_state(self):
+
+
 
 if __name__ == '__main__':
 	unittest.main()
