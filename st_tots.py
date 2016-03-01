@@ -47,3 +47,23 @@ def get_team_points(url, tag, team):
 def soup_to_int(result_set, index):
     return int(result_set[index].get_text())
 
+
+#start to mockup a runner. this will be abstracted out
+
+arsenal_points = get_team_points(TABLE_URL, 'td', 'Arsenal')
+spurs_points = get_team_points(TABLE_URL, 'td', 'Tottenham Hotspur')
+
+arsenal_games_played = get_team_games_played(TABLE_URL, 'td', 'Arsenal')
+tottenham_games_played = get_team_games_played(TABLE_URL, 'td', 'Tottenham Hotspur')
+
+
+print str(arsenal_points) + ' arsenal points'
+print str(spurs_points) + ' spurs points'
+
+print "--------------"
+
+print str(arsenal_games_played) + ' arsenal games played'
+print str(tottenham_games_played) + ' tottenham games played'
+
+
+
