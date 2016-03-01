@@ -7,6 +7,10 @@ POINTS_PER_WIN = 3
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
 
 
+arsenal = {'name' : 'Arsenal', 'gp': 0, 'pts': 0}
+spurs = {'name' : 'Tottenham Hotspur', 'gp': 0, 'pts': 0}
+
+
 def compare_difference_available(point_difference, available_points):
     return point_difference > available_points
 
@@ -48,22 +52,11 @@ def soup_to_int(result_set, index):
     return int(result_set[index].get_text())
 
 
-#start to mockup a runner. this will be abstracted out
-
-arsenal_points = get_team_points(TABLE_URL, 'td', 'Arsenal')
-spurs_points = get_team_points(TABLE_URL, 'td', 'Tottenham Hotspur')
-
-arsenal_games_played = get_team_games_played(TABLE_URL, 'td', 'Arsenal')
-tottenham_games_played = get_team_games_played(TABLE_URL, 'td', 'Tottenham Hotspur')
+def get_initial_state(url, tag, dict):
+    dict['pts'] = get_team_points(url, tag, dict['name'])
+    dict['gp'] = get_team_games_played(url, tag, dict['name'])
+    return dict
 
 
-print str(arsenal_points) + ' arsenal points'
-print str(spurs_points) + ' spurs points'
-
-print "--------------"
-
-print str(arsenal_games_played) + ' arsenal games played'
-print str(tottenham_games_played) + ' tottenham games played'
-
-
+print get_initial_state(TABLE_URL, 'td', arsenal)
 
