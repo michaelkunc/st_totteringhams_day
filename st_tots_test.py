@@ -61,7 +61,14 @@ class ST_TOTSTESTS(unittest.TestCase):
 		games_played_index = 5
 		self.assertEqual(int, type(st_tots.soup_to_int(team_data, games_played_index)))
 
-	# def test_get_initial_state(self):
+	def test_Team__init__games_played(self):
+		arsenal = st_tots.Team(ST_TOTSTESTS.team)
+		self.assertTrue(0 < arsenal.games_played < ST_TOTSTESTS.games_per_season)
+
+
+	def test_Team__init__team_points(self):
+		arsenal = st_tots.Team(ST_TOTSTESTS.team)
+		self.assertTrue(0 < arsenal.team_points < ST_TOTSTESTS.max_points)
 
 
 
