@@ -27,11 +27,6 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertEqual(3, st_tots.points_difference(arsenal_pts, spurs_pts))
 
 
-	def test_get_available_points(self):
-		games_played = 25
-		self.assertEqual(39, st_tots.get_available_points(games_played))
-
-
 	def test_init_Soup(self):
 		class_name = str(type(ST_TOTSTESTS.soup))
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
@@ -73,6 +68,11 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_Team__init__team_points(self):
 		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
 		self.assertTrue(0 < arsenal.team_points < ST_TOTSTESTS.max_points)
+
+
+	def test_Team_get_available_points(self):
+		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
+		self.assertTrue(0 < arsenal.available_points < ST_TOTSTESTS.max_points)
 
 
 
