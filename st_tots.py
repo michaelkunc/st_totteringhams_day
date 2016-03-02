@@ -22,23 +22,9 @@ class Soup(object):
         self.page = BeautifulSoup(html, "lxml")
 
 
-def get_team_name(soup_object, tag, team):
-    return soup_object.find(tag, text=team)
-
-
 def get_team_data(soup_object, tag, team):
-    team = get_team_name(soup_object, tag, team)
+    team = soup_object.find(tag, text=team)
     return team.parent()
-
-
-def get_team_games_played(soup_object, tag, team):
-    team_data = get_team_data(soup_object, tag, team)
-    return soup_to_int(team_data, TABLE_INDEXES['games_played'])
-
-
-def get_team_points(soup_object, tag, team):
-    team_data = get_team_data(soup_object, tag, team)
-    return soup_to_int(team_data, TABLE_INDEXES['points'])
 
 
 def soup_to_int(result_set, index):
@@ -57,16 +43,23 @@ class Team(object):
     def __init__(self, name, soup_object):
         tag = 'td'
         self.name = name
-        self.games_played = get_team_games_played(soup_object, tag, name)
+        self.games_played = self.get_team_games_played(soup_object, tag, name)
         self.team_points = self.get_team_points(soup_object, tag, name)
         self.available_points = self.get_available_points(self.games_played)
+
 
     def get_available_points(self, games_played):
         return (GAMES_IN_SEASON - games_played) * POINTS_PER_WIN
 
+
     def get_team_points(self, soup_object, tag, team):
         team_data = get_team_data(soup_object, tag, team)
         return soup_to_int(team_data, TABLE_INDEXES['points'])
+
+
+    def get_team_games_played(self, soup_object, tag, team):
+        team_data = get_team_data(soup_object, tag, team)
+        return soup_to_int(team_data, TABLE_INDEXES['games_played'])
 
 #some runner code to further evaluate
 

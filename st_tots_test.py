@@ -32,19 +32,15 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
 
-	def test_get_team_name(self):
-		self.assertEqual("Arsenal", st_tots.get_team_name(ST_TOTSTESTS.soup, 'td', ST_TOTSTESTS.team).get_text())
-
-
 	def test_team_data(self):
 		team_index = 4
 		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
 
 
-	def test_get_team_games_played(self):
-		min_games_in_season = 0
-		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
-		self.assertTrue(min_games_in_season <= games_played <= ST_TOTSTESTS.games_per_season)
+	# def test_get_team_games_played(self):
+	# 	min_games_in_season = 0
+	# 	games_played = st_tots.get_team_games_played(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+	# 	self.assertTrue(min_games_in_season <= games_played <= ST_TOTSTESTS.games_per_season)
 
 	def test_soup_to_int(self):
 		team_data = st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
