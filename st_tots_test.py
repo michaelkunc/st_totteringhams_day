@@ -46,12 +46,6 @@ class ST_TOTSTESTS(unittest.TestCase):
 		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		self.assertTrue(min_games_in_season <= games_played <= ST_TOTSTESTS.games_per_season)
 
-
-	def test_get_team_points(self):
-		points = st_tots.get_team_points(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
-		self.assertTrue(ST_TOTSTESTS.min_points <= points <= ST_TOTSTESTS.max_points)
-
-
 	def test_soup_to_int(self):
 		team_data = st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		games_played_index = 5
@@ -73,7 +67,6 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_Team_get_available_points(self):
 		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
 		self.assertTrue(0 < arsenal.available_points < ST_TOTSTESTS.max_points)
-
 
 
 if __name__ == '__main__':
