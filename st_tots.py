@@ -47,6 +47,10 @@ def soup_to_int(result_set, index):
     return int(result_set[index].get_text())
 
 
+def check_soup_object(object):
+    if type(object) !=  "<class 'bs4.BeautifulSoup'>" :
+        raise ValueError('You must pass a BeautifulSoup object') 
+
 class Team(object):
 
     def __init__(self, name, soup_object):
