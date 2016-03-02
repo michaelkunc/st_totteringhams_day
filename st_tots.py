@@ -25,6 +25,7 @@ class Soup(object):
         html = urlopen(url).read()
         self.page = BeautifulSoup(html, "lxml")
 
+
 def get_team_name(soup_object, tag, team):
     return soup_object.find(tag, text=team)
 

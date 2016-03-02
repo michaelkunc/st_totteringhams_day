@@ -11,7 +11,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		ST_TOTSTESTS.games_per_season = 38
 		ST_TOTSTESTS.max_points = ST_TOTSTESTS.games_per_season * ST_TOTSTESTS.points_per_win
 		ST_TOTSTESTS.min_points = 0
-		ST_TOTSTESTS.soup = st_tots.make_soup(ST_TOTSTESTS.url)
+		ST_TOTSTESTS.soup = st_tots.Soup(ST_TOTSTESTS.url).page
 
 
 	def test_compare_difference_available(self):
@@ -33,8 +33,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 
 
 	def test_init_Soup(self):
-		soup = st_tots.Soup(ST_TOTSTESTS.url)
-		class_name = str(type(soup.page))
+		class_name = str(type(ST_TOTSTESTS.soup))
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
 
