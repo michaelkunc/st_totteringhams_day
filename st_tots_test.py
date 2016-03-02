@@ -31,25 +31,6 @@ class ST_TOTSTESTS(unittest.TestCase):
 		class_name = str(type(ST_TOTSTESTS.soup))
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
-
-	def test_team_data(self):
-		team_index = 4
-		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
-
-
-	# def test_get_team_games_played(self):
-	# 	min_games_in_season = 0
-	# 	games_played = st_tots.get_team_games_played(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
-	# 	self.assertTrue(min_games_in_season <= games_played <= ST_TOTSTESTS.games_per_season)
-
-	def test_soup_to_int(self):
-		team_data = st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
-		games_played_index = 5
-		self.assertEqual(int, type(st_tots.soup_to_int(team_data, games_played_index)))
-
-	def test_check_soup_object(self):
-		self.assertRaises(ValueError, st_tots.check_soup_object, 'not a BeautifulSoup object')
-
 	def test_Team__init__games_played(self):
 		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
 		self.assertTrue(0 < arsenal.games_played < ST_TOTSTESTS.games_per_season)

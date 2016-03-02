@@ -22,9 +22,9 @@ class Soup(object):
         self.page = BeautifulSoup(html, "lxml")
 
 
-def get_team_data(soup_object, tag, team):
-    team = soup_object.find(tag, text=team)
-    return team.parent()
+# def get_team_data(soup_object, tag, team):
+#     team = soup_object.find(tag, text=team)
+#     return team.parent()
 
 
 def soup_to_int(result_set, index):
@@ -53,13 +53,17 @@ class Team(object):
 
 
     def get_team_points(self, soup_object, tag, team):
-        team_data = get_team_data(soup_object, tag, team)
+        team_data = self.get_team_data(soup_object, tag, team)
         return soup_to_int(team_data, TABLE_INDEXES['points'])
 
 
     def get_team_games_played(self, soup_object, tag, team):
-        team_data = get_team_data(soup_object, tag, team)
+        team_data = self.get_team_data(soup_object, tag, team)
         return soup_to_int(team_data, TABLE_INDEXES['games_played'])
+
+    def get_team_data(self, soup_object, tag, team):
+        team = soup_object.find(tag, text=team)
+        return team.parent()
 
 #some runner code to further evaluate
 
