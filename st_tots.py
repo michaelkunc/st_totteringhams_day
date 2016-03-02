@@ -24,23 +24,22 @@ def make_soup(url):
     return BeautifulSoup(html, "lxml")
 
 
-def get_team_name(url, tag, team):
-    soup = make_soup(url)
-    return soup.find(tag, text=team)
+def get_team_name(soup_object, tag, team):
+    return soup_object.find(tag, text=team)
 
 
-def get_team_data(url, tag, team):
-    team = get_team_name(url, tag, team)
+def get_team_data(soup_object, tag, team):
+    team = get_team_name(soup_object, tag, team)
     return team.parent()
 
 
-def get_team_games_played(url, tag, team):
-    team_data = get_team_data(url, tag, team)
+def get_team_games_played(soup_object, tag, team):
+    team_data = get_team_data(soup_object, tag, team)
     return soup_to_int(team_data, TABLE_INDEXES['games_played'])
 
 
-def get_team_points(url, tag, team):
-    team_data = get_team_data(url, tag, team)
+def get_team_points(soup_object, tag, team):
+    team_data = get_team_data(soup_object, tag, team)
     return soup_to_int(team_data, TABLE_INDEXES['points'])
 
 
@@ -50,11 +49,10 @@ def soup_to_int(result_set, index):
 
 class Team(object):
 
-    def __init__(self, name):
-        url = TABLE_URL
+    def __init__(self, name, soup_object):
         tag = 'td'
         self.name = name
-        self.games_played = get_team_games_played(url, tag, name)
-        self.team_points = get_team_points(url, tag, name)
+        self.games_played = get_team_games_played(soup_object, tag, name)
+        self.team_points = get_team_points(soup_object, tag, name)
 
 

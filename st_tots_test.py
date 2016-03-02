@@ -11,6 +11,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		ST_TOTSTESTS.games_per_season = 38
 		ST_TOTSTESTS.max_points = ST_TOTSTESTS.games_per_season * ST_TOTSTESTS.points_per_win
 		ST_TOTSTESTS.min_points = 0
+		ST_TOTSTESTS.soup = st_tots.make_soup(ST_TOTSTESTS.url)
 
 
 	def test_compare_difference_available(self):
@@ -37,37 +38,37 @@ class ST_TOTSTESTS(unittest.TestCase):
 
 
 	def test_get_team_name(self):
-		self.assertEqual("Arsenal", st_tots.get_team_name(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team).get_text())
+		self.assertEqual("Arsenal", st_tots.get_team_name(ST_TOTSTESTS.soup, 'td', ST_TOTSTESTS.team).get_text())
 
 
 	def test_team_data(self):
 		team_index = 4
-		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
+		self.assertEqual("Arsenal", st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)[team_index].get_text())
 
 
 	def test_get_team_games_played(self):
 		min_games_in_season = 0
-		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		games_played = st_tots.get_team_games_played(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		self.assertTrue(min_games_in_season <= games_played <= ST_TOTSTESTS.games_per_season)
 
 
 	def test_get_team_points(self):
-		points = st_tots.get_team_points(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		points = st_tots.get_team_points(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		self.assertTrue(ST_TOTSTESTS.min_points <= points <= ST_TOTSTESTS.max_points)
 
 
 	def test_soup_to_int(self):
-		team_data = st_tots.get_team_data(ST_TOTSTESTS.url, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
+		team_data = st_tots.get_team_data(ST_TOTSTESTS.soup, ST_TOTSTESTS.tag, ST_TOTSTESTS.team)
 		games_played_index = 5
 		self.assertEqual(int, type(st_tots.soup_to_int(team_data, games_played_index)))
 
 	def test_Team__init__games_played(self):
-		arsenal = st_tots.Team(ST_TOTSTESTS.team)
+		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
 		self.assertTrue(0 < arsenal.games_played < ST_TOTSTESTS.games_per_season)
 
 
 	def test_Team__init__team_points(self):
-		arsenal = st_tots.Team(ST_TOTSTESTS.team)
+		arsenal = st_tots.Team(ST_TOTSTESTS.team, ST_TOTSTESTS.soup)
 		self.assertTrue(0 < arsenal.team_points < ST_TOTSTESTS.max_points)
 
 
