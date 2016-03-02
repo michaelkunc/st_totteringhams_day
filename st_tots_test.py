@@ -32,8 +32,9 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertEqual(39, st_tots.get_available_points(games_played))
 
 
-	def test_make_soup(self):
-		class_name = str(type(st_tots.make_soup(ST_TOTSTESTS.url)))
+	def test_init_Soup(self):
+		soup = st_tots.Soup(ST_TOTSTESTS.url)
+		class_name = str(type(soup.page))
 		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
 
 

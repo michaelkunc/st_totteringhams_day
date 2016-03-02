@@ -19,10 +19,11 @@ def get_available_points(games_played):
     return (GAMES_IN_SEASON - games_played) * POINTS_PER_WIN
 
 
-def make_soup(url):
-    html = urlopen(url).read()
-    return BeautifulSoup(html, "lxml")
-
+class Soup(object):
+    
+    def __init__(self, url):
+        html = urlopen(url).read()
+        self.page = BeautifulSoup(html, "lxml")
 
 def get_team_name(soup_object, tag, team):
     return soup_object.find(tag, text=team)
@@ -60,3 +61,12 @@ class Team(object):
         self.team_points = get_team_points(soup_object, tag, name)
 
 
+#some runner code to further evaluate
+
+football_data = Soup(TABLE_URL)
+
+arsenal = Team("Arsenal", football_data.page )
+spurs = Team("Tottenham Hotspur", football_data.page)
+
+print arsenal
+print spurs
