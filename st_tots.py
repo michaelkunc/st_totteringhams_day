@@ -15,10 +15,6 @@ def points_difference(arsenal_pts, spurs_pts):
     return arsenal_pts - spurs_pts
 
 
-def get_available_points(games_played):
-    return (GAMES_IN_SEASON - games_played) * POINTS_PER_WIN
-
-
 class Soup(object):
     
     def __init__(self, url):
@@ -53,6 +49,9 @@ def check_soup_object(object):
     if type(object) !=  "<class 'bs4.BeautifulSoup'>" :
         raise ValueError('You must pass a BeautifulSoup object') 
 
+
+#need to move the get_team_games_played, get_team_data, get_team_points into
+#the team class
 class Team(object):
 
     def __init__(self, name, soup_object):
@@ -60,9 +59,9 @@ class Team(object):
         self.name = name
         self.games_played = get_team_games_played(soup_object, tag, name)
         self.team_points = get_team_points(soup_object, tag, name)
-        self.available_points = get_available_points(self.games_played)
+        self.available_points = self.get_available_points(self.games_played)
 
-    def get_available_points(games_played):
+    def get_available_points(self, games_played):
         return (GAMES_IN_SEASON - games_played) * POINTS_PER_WIN
 
 #some runner code to further evaluate
