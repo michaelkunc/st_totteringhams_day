@@ -7,14 +7,6 @@ POINTS_PER_WIN = 3
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
 
 
-def compare_difference_available(point_difference, available_points):
-    return point_difference > available_points
-
-
-def points_difference(arsenal_pts, spurs_pts):
-    return arsenal_pts - spurs_pts
-
-
 class Soup(object):
     
     def __init__(self, url):
@@ -22,22 +14,6 @@ class Soup(object):
         self.page = BeautifulSoup(html, "lxml")
 
 
-# def get_team_data(soup_object, tag, team):
-#     team = soup_object.find(tag, text=team)
-#     return team.parent()
-
-
-def soup_to_int(result_set, index):
-    return int(result_set[index].get_text())
-
-
-def check_soup_object(object):
-    if type(object) !=  "<class 'bs4.BeautifulSoup'>" :
-        raise ValueError('You must pass a BeautifulSoup object') 
-
-
-#need to move the get_team_games_played, get_team_data, get_team_points into
-#the team class
 class Team(object):
 
     def __init__(self, name, soup_object):
@@ -54,16 +30,19 @@ class Team(object):
 
     def get_team_points(self, soup_object, tag, team):
         team_data = self.get_team_data(soup_object, tag, team)
-        return soup_to_int(team_data, TABLE_INDEXES['points'])
+        return self.soup_to_int(team_data, TABLE_INDEXES['points'])
 
 
     def get_team_games_played(self, soup_object, tag, team):
         team_data = self.get_team_data(soup_object, tag, team)
-        return soup_to_int(team_data, TABLE_INDEXES['games_played'])
+        return self.soup_to_int(team_data, TABLE_INDEXES['games_played'])
 
     def get_team_data(self, soup_object, tag, team):
         team = soup_object.find(tag, text=team)
         return team.parent()
+
+    def soup_to_int(self, result_set, index):
+        return int(result_set[index].get_text())
 
 #some runner code to further evaluate
 
