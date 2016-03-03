@@ -2,8 +2,6 @@ from bs4 import BeautifulSoup
 from urllib2 import urlopen
 
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
-GAMES_IN_SEASON = 38
-POINTS_PER_WIN = 3
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
 
 
@@ -16,6 +14,9 @@ class Soup(object):
 
 class Team(object):
 
+    GAMES_IN_SEASON = 38
+    POINTS_PER_WIN = 3    
+
     def __init__(self, name, soup_object):
         tag = 'td'
         self.name = name
@@ -25,7 +26,7 @@ class Team(object):
 
 
     def get_available_points(self, games_played):
-        return (GAMES_IN_SEASON - games_played) * POINTS_PER_WIN
+        return (Team.GAMES_IN_SEASON - games_played) * Team.POINTS_PER_WIN
 
 
     def get_team_points(self, soup_object, tag, team):
@@ -37,9 +38,11 @@ class Team(object):
         team_data = self.get_team_data(soup_object, tag, team)
         return self.soup_to_int(team_data, TABLE_INDEXES['games_played'])
 
+
     def get_team_data(self, soup_object, tag, team):
         team = soup_object.find(tag, text=team)
         return team.parent()
+
 
     def soup_to_int(self, result_set, index):
         return int(result_set[index].get_text())
