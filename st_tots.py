@@ -60,11 +60,12 @@ def check_for_st_tots(arsenal, spurs):
         return true
     else:
         arsenal.games_played += 1
+        arsenal.points += 3
         spurs.games_played += 1
 
 while arsenal.games_played < 38 and spurs.games_played < 38:
     check_for_st_tots(arsenal, spurs)
-    print str(arsenal.games_played) + ' games played  ' + str(arsenal.available_points(arsenal.games_played))
+    print arsenal.points - spurs.points
 
 print "No forecasted St. Tott's day"
 
