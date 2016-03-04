@@ -23,7 +23,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 
 
 	def test_Team_init_available_points(self):
-		self.assertTrue(0 < ST_TOTSTESTS.arsenal.available_points < ST_TOTSTESTS.max_points)
+		self.assertTrue(0 < ST_TOTSTESTS.arsenal.available_points(ST_TOTSTESTS.arsenal.games_played) < ST_TOTSTESTS.max_points)
 
 
 if __name__ == '__main__':

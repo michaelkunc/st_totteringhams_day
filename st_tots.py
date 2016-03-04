@@ -21,12 +21,10 @@ class Team(object):
         tag = 'td'
         self.name = name
         self.games_played = self.get_team_games_played(soup_object, tag, name)
-        # I think I need to remove points from an attribute and make it a function
         self.points = self.get_team_points(soup_object, tag, name)
-        self.available_points = self.get_available_points(self.games_played)
 
 
-    def get_available_points(self, games_played):
+    def available_points(self, games_played):
         return (Team.GAMES_IN_SEASON - games_played) * Team.POINTS_PER_WIN
 
 
@@ -55,24 +53,20 @@ football_data = Soup(TABLE_URL)
 arsenal = Team("Arsenal", football_data.page )
 spurs = Team("Tottenham Hotspur", football_data.page)
 
-
-print arsenal.games_played
-print spurs.games_played
-
 print "-------------------------------------"
 
 def check_for_st_tots(arsenal, spurs):
-    if (arsenal.points - spurs.points) > spurs.available_points:
-        print "St Tots"
+    if (arsenal.points - spurs.points) > spurs.available_points(spurs.games_played):
+        return true
     else:
         arsenal.games_played += 1
         spurs.games_played += 1
 
 while arsenal.games_played < 38 and spurs.games_played < 38:
     check_for_st_tots(arsenal, spurs)
+    print str(arsenal.games_played) + ' games played  ' + str(arsenal.available_points(arsenal.games_played))
 
-print arsenal.games_played
-print spurs.games_played
+print "No forecasted St. Tott's day"
 
 
 
