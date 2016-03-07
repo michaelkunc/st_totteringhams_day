@@ -55,8 +55,8 @@ class Team(object):
 
 # print "-------------------------------------"
 
-def check_for_st_tots(arsenal, spurs):
-    if (arsenal.points - spurs.points) > spurs.available_points(spurs.games_played):
+def check_for_st_tots(arsenal_points, spurs_points, spurs):
+    if (arsenal_points - spurs_points) > spurs.available_points(spurs.games_played):
         return 'we have achieved st tots'
     else:
         return 'we have not achieved st tots'

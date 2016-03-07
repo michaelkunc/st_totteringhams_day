@@ -27,7 +27,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.available_points(ST_TOTSTESTS.arsenal.games_played) < ST_TOTSTESTS.max_points)
 
 	def test_check_for_st_tots_not_achieved(self):
-		self.assertEqual('we have not achieved st tots', st_tots.check_for_st_tots(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
+		self.assertEqual('we have not achieved st tots', st_tots.check_for_st_tots(ST_TOTSTESTS.arsenal.points, ST_TOTSTESTS.spurs.points, ST_TOTSTESTS.spurs))
 
 
 if __name__ == '__main__':
