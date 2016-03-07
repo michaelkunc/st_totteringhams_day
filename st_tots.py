@@ -48,26 +48,27 @@ class Team(object):
 
 #some runner code to further evaluate
 
-football_data = Soup(TABLE_URL)
+# football_data = Soup(TABLE_URL)
 
-arsenal = Team("Arsenal", football_data.page )
-spurs = Team("Tottenham Hotspur", football_data.page)
+# arsenal = Team("Arsenal", football_data.page )
+# spurs = Team("Tottenham Hotspur", football_data.page)
 
-print "-------------------------------------"
+# print "-------------------------------------"
 
 def check_for_st_tots(arsenal, spurs):
     if (arsenal.points - spurs.points) > spurs.available_points(spurs.games_played):
-        return true
+        return 'we have achieved st tots'
     else:
-        arsenal.games_played += 1
-        arsenal.points += 3
-        spurs.games_played += 1
+        return 'we have not achieved st tots'
+        # arsenal.games_played += 1
+        # arsenal.points += 3
+        # spurs.games_played += 1
 
-while arsenal.games_played < 38 and spurs.games_played < 38:
-    check_for_st_tots(arsenal, spurs)
-    print arsenal.points - spurs.points
+# while arsenal.games_played < 38 and spurs.games_played < 38:
+#     check_for_st_tots(arsenal, spurs)
+#     print arsenal.points - spurs.points
 
-print "No forecasted St. Tott's day"
+# print "No forecasted St. Tott's day"
 
 
 

@@ -9,6 +9,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		ST_TOTSTESTS.max_points = ST_TOTSTESTS.games_per_season * ST_TOTSTESTS.points_per_win
 		ST_TOTSTESTS.soup = st_tots.Soup('http://www.premierleague.com/en-gb/matchday/league-table.html').page
 		ST_TOTSTESTS.arsenal = st_tots.Team('Arsenal', ST_TOTSTESTS.soup)
+		ST_TOTSTESTS.spurs = st_tots.Team('Tottenham Hotspur', ST_TOTSTESTS.soup)
 
 	def test_init_Soup(self):
 		class_name = str(type(ST_TOTSTESTS.soup))
@@ -22,8 +23,11 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.points < ST_TOTSTESTS.max_points)
 
 
-	def test_Team_init_available_points(self):
+	def test_Team_available_points(self):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.available_points(ST_TOTSTESTS.arsenal.games_played) < ST_TOTSTESTS.max_points)
+
+	def test_check_for_st_tots_not_achieved(self):
+		self.assertEqual('we have not achieved st tots', st_tots.check_for_st_tots(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
 
 
 if __name__ == '__main__':
