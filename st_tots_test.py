@@ -29,6 +29,13 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_check_for_st_tots_not_achieved(self):
 		self.assertEqual('we have not achieved st tots', st_tots.check_for_st_tots(ST_TOTSTESTS.arsenal.points, ST_TOTSTESTS.spurs.points, ST_TOTSTESTS.spurs))
 
+	def test_check_for_st_tots_achieved(self):
+		#stubbing out attributes to trigger the else condition
+		arsenal = st_tots.Team('Arsenal', ST_TOTSTESTS.soup)
+		arsenal.points = 100
+		spurs = st_tots.Team('Tottenham Hotspur', ST_TOTSTESTS.soup)
+		spurs.points = 0
+		self.assertEqual('we have achieved st tots', st_tots.check_for_st_tots(arsenal.points, spurs.points, spurs))
 
 if __name__ == '__main__':
 	unittest.main()
