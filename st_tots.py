@@ -39,7 +39,7 @@ class Team(object):
 
 
     def get_team_data(self, soup_object, tag, team):
-        team = soup_object.find(tag, text=team)
+        team = soup_object.page.find(tag, text=team)
         return team.parent()
 
 
@@ -58,3 +58,21 @@ def end_of_season(arsenal, spurs):
 def check_both_conditions(arsenal, spurs):
     return st_tots(arsenal, spurs) and end_of_season(arsenal, spurs)
 
+soup = Soup(TABLE_URL)
+
+arsenal = Team("Arsenal", soup)
+spurs = Team("Tottenham Hotspur", soup)
+
+
+print arsenal.points
+print spurs.points
+
+if check_both_conditions(arsenal, spurs) == True:
+    print 'loop has ended'
+else:
+    arsenal.points += 3
+    arsenal.games_played += 1
+    spurs.games_played += 1
+    print arsenal.points
+    print spurs.points
+    
