@@ -45,9 +45,10 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_end_of_season(self):
 		self.assertFalse(st_tots.end_of_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
 
-	def test_check_both_conditions(self):
-		self.assertFalse(st_tots.check_both_conditions(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
 
+	def test_simulate_remaining_season(self):
+		return_result = st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs)
+		self.assertEqual( 'we have achieved St Tots', return_result)
 
 if __name__ == '__main__':
 	unittest.main()

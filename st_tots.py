@@ -55,26 +55,20 @@ def end_of_season(arsenal, spurs):
     if arsenal.games_played == 38 and spurs_games.games_played == 38:
         return True
 
-def check_both_conditions(arsenal, spurs):
-    return st_tots(arsenal, spurs) and end_of_season(arsenal, spurs)
+
+def simulate_remaining_season(arsenal, spurs):
+    if st_tots(arsenal, spurs) == True: 
+        return 'we have achieved St Tots'
+    elif end_of_season(arsenal, spurs) == True:
+        return 'the season has ended'
+    else: 
+        arsenal.points += 3
+        arsenal.games_played += 1
+        spurs.games_played += 1
+        return simulate_remaining_season(arsenal, spurs)
+
 
 soup = Soup(TABLE_URL)
-
 arsenal = Team("Arsenal", soup)
-spurs = Team("Tottenham Hotspur", soup)
-
-
-print arsenal.points
-print spurs.points
-
-if st_tots(arsenal, spurs) == True:
-    print 'we have achieved St Tots'
-elif end_of_season(arsenal, spurs) == True:
-    print 'the season has ended'
-else: 
-    arsenal.points += 3
-    arsenal.games_played += 1
-    spurs.games_played += 1
-    print arsenal.points
-    print spurs.points
-    
+spurs = Team("Tottenham Hotspur", soup)    
+simulate_remaining_season(arsenal, spurs)
