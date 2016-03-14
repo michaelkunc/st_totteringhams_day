@@ -24,6 +24,7 @@ class ST_TOTSTESTS(unittest.TestCase):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.points < ST_TOTSTESTS.max_points)
 
 	# def test_Team_get_team_data(self):
+	# 	self.assertTrue('this is not working', st_tots.Team.get_team_data(self, ST_TOTSTESTS.arsenal, 'td', "Arsenal"))
 
 
 	def test_Team_available_points(self):
