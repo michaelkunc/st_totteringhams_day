@@ -23,8 +23,9 @@ class ST_TOTSTESTS(unittest.TestCase):
 	def test_Team__init__team_points(self):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.points < ST_TOTSTESTS.max_points)
 
-	# def test_Team_get_team_data(self):
-	# 	self.assertTrue('this is not working', st_tots.Team.get_team_data(self, ST_TOTSTESTS.arsenal, 'td', "Arsenal"))
+#this is a slightly gnarley test case.
+	def test_Team_get_team_data(self):
+		self.assertEqual('<td class="col-pos">3</td>', str(ST_TOTSTESTS.arsenal.get_team_data(ST_TOTSTESTS.soup, 'td', "Arsenal")[0]))
 
 
 	def test_Team_available_points(self):
