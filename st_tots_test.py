@@ -7,13 +7,14 @@ class ST_TOTSTESTS(unittest.TestCase):
 		ST_TOTSTESTS.points_per_win = 3
 		ST_TOTSTESTS.games_per_season = 38
 		ST_TOTSTESTS.max_points = ST_TOTSTESTS.games_per_season * ST_TOTSTESTS.points_per_win
-		ST_TOTSTESTS.soup = st_tots.Soup('http://www.premierleague.com/en-gb/matchday/league-table.html').page
+		ST_TOTSTESTS.soup = st_tots.Soup('http://www.premierleague.com/en-gb/matchday/league-table.html')
 		ST_TOTSTESTS.arsenal = st_tots.Team('Arsenal', ST_TOTSTESTS.soup)
 		ST_TOTSTESTS.spurs = st_tots.Team('Tottenham Hotspur', ST_TOTSTESTS.soup)
 
+#need to review this test to make sure it's testing something valuable.
 	def test_init_Soup(self):
 		class_name = str(type(ST_TOTSTESTS.soup))
-		self.assertEqual("<class 'bs4.BeautifulSoup'>", class_name)
+		self.assertEqual("<class 'st_tots.Soup'>", class_name)
 
 	def test_Team__init__games_played(self):
 		self.assertTrue(0 < ST_TOTSTESTS.arsenal.games_played < ST_TOTSTESTS.games_per_season)
