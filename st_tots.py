@@ -67,9 +67,11 @@ spurs = Team("Tottenham Hotspur", soup)
 print arsenal.points
 print spurs.points
 
-if check_both_conditions(arsenal, spurs) == True:
-    print 'loop has ended'
-else:
+if st_tots(arsenal, spurs) == True:
+    print 'we have achieved St Tots'
+elif end_of_season(arsenal, spurs) == True:
+    print 'the season has ended'
+else: 
     arsenal.points += 3
     arsenal.games_played += 1
     spurs.games_played += 1
