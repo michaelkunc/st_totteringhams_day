@@ -47,6 +47,15 @@ class Team(object):
         return int(result_set[index].get_text())
 
 
+class Messages(object):
+        st_tots = 'we have achieved St tots'
+    
+        @classmethod
+        def st_tots_message(cls):
+            return cls.st_tots
+
+
+
 def st_tots(arsenal, spurs):
     if (arsenal.points - spurs.points) > spurs.available_points(spurs.games_played):
         return True
@@ -58,7 +67,8 @@ def end_of_season(arsenal, spurs):
 
 def simulate_remaining_season(arsenal, spurs):
     if st_tots(arsenal, spurs) == True: 
-        return 'we have achieved St Tots'
+        message = Messages.st_tots_message()
+        return message
     elif end_of_season(arsenal, spurs) == True:
         return 'the season has ended'
     else: 
@@ -68,6 +78,7 @@ def simulate_remaining_season(arsenal, spurs):
         return simulate_remaining_season(arsenal, spurs)
 
 
+#runner code
 soup = Soup(TABLE_URL)
 arsenal = Team("Arsenal", soup)
 spurs = Team("Tottenham Hotspur", soup)    

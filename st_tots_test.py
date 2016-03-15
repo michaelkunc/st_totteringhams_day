@@ -47,8 +47,8 @@ class ST_TOTSTESTS(unittest.TestCase):
 
 
 	def test_simulate_remaining_season(self):
-		return_result = st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs)
-		self.assertEqual( 'we have achieved St Tots', return_result)
+		st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs)
+		self.assertEqual( st_tots.Messages.st_tots_message(), st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
 
 if __name__ == '__main__':
 	unittest.main()
