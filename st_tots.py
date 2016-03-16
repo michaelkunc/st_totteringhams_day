@@ -49,10 +49,15 @@ class Team(object):
 
 class Messages(object):
         st_tots = 'we have achieved St tots'
+        end_of_season = "it's the end of the season"
     
         @classmethod
         def st_tots_message(cls):
             return cls.st_tots
+
+        @classmethod
+        def end_of_season_message(cls):
+            return cls.end_of_season
 
 
 
@@ -61,7 +66,7 @@ def st_tots(arsenal, spurs):
         return True
 
 def end_of_season(arsenal, spurs):
-    if arsenal.games_played == 38 and spurs_games.games_played == 38:
+    if arsenal.games_played == 38 and spurs.games_played == 38:
         return True
 
 
@@ -70,7 +75,8 @@ def simulate_remaining_season(arsenal, spurs):
         message = Messages.st_tots_message()
         return message
     elif end_of_season(arsenal, spurs) == True:
-        return 'the season has ended'
+        message = Messages.end_of_season_message()
+        return message
     else: 
         arsenal.points += 3
         arsenal.games_played += 1

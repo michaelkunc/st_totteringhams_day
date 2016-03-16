@@ -50,5 +50,16 @@ class ST_TOTSTESTS(unittest.TestCase):
 		st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs)
 		self.assertEqual( st_tots.Messages.st_tots_message(), st_tots.simulate_remaining_season(ST_TOTSTESTS.arsenal, ST_TOTSTESTS.spurs))
 
+	def test_simulate_remaining_season_end_of_season(self):
+		#stubbing attributes to trigger the elif condition
+		arsenal = st_tots.Team('Arsenal', ST_TOTSTESTS.soup)
+		arsenal.games_played = 38
+		arsenal.points = 0
+		spurs = st_tots.Team('Tottenham Hotspur', ST_TOTSTESTS.soup)
+		spurs.games_played = 38
+		spurs.points = 0
+		self.assertEqual( st_tots.Messages.end_of_season_message(), st_tots.simulate_remaining_season(arsenal, spurs))
+
+
 if __name__ == '__main__':
 	unittest.main()
