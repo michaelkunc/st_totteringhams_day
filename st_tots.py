@@ -3,13 +3,13 @@ from urllib2 import urlopen
 
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
-
+MATCHDAY_URL = 'http://www.premierleague.com/en-gb/matchday/matches.html'
 
 class Soup(object):
     
     def __init__(self, url):
         html = urlopen(url).read()
-        self.page = BeautifulSoup(html, "lxml")
+        self.page = BeautifulSoup(html, 'lxml')
 
 
 class Team(object):
@@ -45,6 +45,13 @@ class Team(object):
 
     def soup_to_int(self, result_set, index):
         return int(result_set[index].get_text())
+
+#this will need to only grab matchdays where Arsenal play
+class Matchdays(object):
+
+        def __init__(self, soup_object):
+            tag = 'th'
+            dates = soup_object.page.findAll(tag)
 
 
 class Messages(object):
