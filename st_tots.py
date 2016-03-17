@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
+import re
 
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
-MATCHDAY_URL = 'http://www.premierleague.com/en-gb/matchday/matches.html'
+MATCHDAY_URL = 'http://www.bbc.com/sport/football/teams/arsenal/fixtures'
 
 class Soup(object):
     
@@ -46,12 +47,13 @@ class Team(object):
     def soup_to_int(self, result_set, index):
         return int(result_set[index].get_text())
 
-#this will need to only grab matchdays where Arsenal play
+#this is kinda broke
 class Matchdays(object):
 
-        def __init__(self, soup_object):
-            tag = 'th'
-            dates = soup_object.page.findAll(tag)
+        def __init__(self, url):
+            html = urlopen(url).read()
+            page = BeautifulSoup(html, 'lxml')
+            self.matches = [e.text().strip() for e in page('td', class_='match-date')]
 
 
 class Messages(object):
@@ -92,7 +94,13 @@ def simulate_remaining_season(arsenal, spurs):
 
 
 #runner code
-soup = Soup(TABLE_URL)
-arsenal = Team("Arsenal", soup)
-spurs = Team("Tottenham Hotspur", soup)    
-simulate_remaining_season(arsenal, spurs)
+# soup = Soup(TABLE_URL)
+# arsenal = Team("Arsenal", soup)
+# spurs = Team("Tottenham Hotspur", soup)    
+# simulate_remaining_season(arsenal, spurs)
+
+# match_soup = Soup(MATCHDAY_URL)
+
+# matches = Matchdays(MATCHDAY_URL)
+
+# print matches.matches
