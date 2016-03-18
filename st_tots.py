@@ -94,8 +94,8 @@ def simulate_remaining_season(arsenal, spurs):
 # spurs = Team("Tottenham Hotspur", soup)
 # simulate_remaining_season(arsenal, spurs)
 
-match_soup = Soup(MATCHDAY_URL)
+# match_soup = Soup(MATCHDAY_URL)
 
-matches = Matchdays.get_matches(match_soup)
+# matches = Matchdays.get_matches(match_soup)
 
-print matches
+# print matches
