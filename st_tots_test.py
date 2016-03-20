@@ -14,7 +14,16 @@ class TOTSTESTS(unittest.TestCase):
         TOTSTESTS.arsenal = st_tots.Team('Arsenal', TOTSTESTS.table_soup)
         TOTSTESTS.spurs = st_tots.Team(
             'Tottenham Hotspur', TOTSTESTS.table_soup)
-        TOTSTESTS.match_soup = st_tots.Soup('http://www.bbc.com/sport/football/teams/arsenal/fixtures')
+        TOTSTESTS.match_soup = st_tots.Soup(
+            'http://www.bbc.com/sport/football/teams/arsenal/fixtures')
+
+    def test_http_response_table(self):
+        page = st_tots.urlopen(st_tots.TABLE_URL)
+        self.assertEqual(200, page.getcode())
+
+    def test_http_response_match(self):
+        page = st_tots.urlopen(st_tots.MATCHDAY_URL)
+        self.assertEqual(200, page.getcode())
 
 # need to review this test to make sure it's testing something valuable.
     def test_init_Soup(self):
@@ -38,7 +47,8 @@ class TOTSTESTS(unittest.TestCase):
             TOTSTESTS.arsenal.games_played) < TOTSTESTS.max_points)
 
     def test_Matchdays_get_matches(self):
-    		self.assertEqual(list, type(st_tots.Matchdays.get_matches(TOTSTESTS.match_soup)))
+        self.assertEqual(list, type(
+            st_tots.Matchdays.get_matches(TOTSTESTS.match_soup)))
 
     def test_check_for_st_tots_not_achieved(self):
         self.assertFalse(st_tots.st_tots(TOTSTESTS.arsenal, TOTSTESTS.spurs))
