@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
-import re
+
 
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
@@ -46,9 +46,12 @@ class Team(object):
 
 class Matchdays(object):
 
-    @classmethod
-    def get_matches(self, soup_object):
-        return [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
+    def __init__(self, soup_object):
+        self.matches = [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
+
+    # @classmethod
+    # def get_matches(self, soup_object):
+    #     return [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
 
 
 class Messages(object):
@@ -74,10 +77,12 @@ def end_of_season(arsenal, spurs):
         return True
 
 
-def simulate_remaining_season(arsenal, spurs):
+def simulate_remaining_season(arsenal, spurs, match):
+    # matches = Matchdays.get_matches(match_soup)
     if st_tots(arsenal, spurs) == True:
-        message = Messages.st_tots_message()
-        return message
+        message = match.matches
+        date = str(matches[0])
+        return message + ' ' + date
     elif end_of_season(arsenal, spurs) == True:
         message = Messages.end_of_season_message()
         return message
@@ -99,3 +104,6 @@ def simulate_remaining_season(arsenal, spurs):
 # matches = Matchdays.get_matches(match_soup)
 
 # print matches
+# print '-------------------'
+# print arsenal
+# print spurs
