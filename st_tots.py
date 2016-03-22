@@ -55,7 +55,7 @@ class Matchdays(object):
 
 
 class Messages(object):
-    st_tots = 'we have achieved St tots'
+    st_tots = 'The earliest matchday for St Tots is '
     end_of_season = "it's the end of the season"
 
     @classmethod
@@ -65,6 +65,10 @@ class Messages(object):
     @classmethod
     def end_of_season_message(cls):
         return cls.end_of_season
+
+    @classmethod
+    def list_element_to_string(self, element):
+        return str(element)
 
 
 def st_tots(arsenal, spurs):
@@ -78,11 +82,9 @@ def end_of_season(arsenal, spurs):
 
 
 def simulate_remaining_season(arsenal, spurs, match):
-    # matches = Matchdays.get_matches(match_soup)
     if st_tots(arsenal, spurs) == True:
-        message = match.matches
-        date = str(matches[0])
-        return message + ' ' + date
+        # date = str(match.matches[0])
+        return Messages.st_tots_message()  + Messages.list_element_to_string(match.matches[0])
     elif end_of_season(arsenal, spurs) == True:
         message = Messages.end_of_season_message()
         return message
@@ -90,7 +92,8 @@ def simulate_remaining_season(arsenal, spurs, match):
         arsenal.points += 3
         arsenal.games_played += 1
         spurs.games_played += 1
-        return simulate_remaining_season(arsenal, spurs)
+        return simulate_remaining_season(arsenal, spurs, match)
+
 
 
 # runner code
