@@ -49,10 +49,6 @@ class Matchdays(object):
     def __init__(self, soup_object):
         self.matches = [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
 
-    # @classmethod
-    # def get_matches(self, soup_object):
-    #     return [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
-
 
 class Messages(object):
     st_tots = 'The earliest matchday for St Tots is '
@@ -83,7 +79,6 @@ def end_of_season(arsenal, spurs):
 
 def simulate_remaining_season(arsenal, spurs, match):
     if st_tots(arsenal, spurs) == True:
-        # date = str(match.matches[0])
         return Messages.st_tots_message()  + Messages.list_element_to_string(match.matches[0])
     elif end_of_season(arsenal, spurs) == True:
         message = Messages.end_of_season_message()
@@ -92,21 +87,7 @@ def simulate_remaining_season(arsenal, spurs, match):
         arsenal.points += 3
         arsenal.games_played += 1
         spurs.games_played += 1
+        match.matches.pop(0)
         return simulate_remaining_season(arsenal, spurs, match)
 
 
-
-# runner code
-# soup = Soup(TABLE_URL)
-# arsenal = Team("Arsenal", soup)
-# spurs = Team("Tottenham Hotspur", soup)
-# simulate_remaining_season(arsenal, spurs)
-
-# match_soup = Soup(MATCHDAY_URL)
-
-# matches = Matchdays.get_matches(match_soup)
-
-# print matches
-# print '-------------------'
-# print arsenal
-# print spurs

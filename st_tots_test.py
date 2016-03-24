@@ -68,7 +68,7 @@ class TOTSTESTS(unittest.TestCase):
         #need to fix this test case so it calls the entire message.
     def test_simulate_remaining_season(self):
         st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days)
-        self.assertEqual(st_tots.Messages.st_tots_message() + 'Sat 2 Apr', st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days))
+        self.assertEqual(st_tots.Messages.st_tots_message() + 'Sat 30 Apr', st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days))
 
     def test_simulate_remaining_season_end_of_season(self):
         # stubbing attributes to trigger the elif condition
