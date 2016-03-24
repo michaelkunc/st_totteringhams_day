@@ -65,6 +65,7 @@ class TOTSTESTS(unittest.TestCase):
         self.assertFalse(st_tots.end_of_season(
             TOTSTESTS.arsenal, TOTSTESTS.spurs))
 
+        #need to fix this test case so it calls the entire message.
     def test_simulate_remaining_season(self):
         st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days)
         self.assertEqual(st_tots.Messages.st_tots_message() + 'Sat 2 Apr', st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days))
