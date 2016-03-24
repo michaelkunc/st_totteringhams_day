@@ -8,7 +8,7 @@ MATCHDAY_URL = 'http://www.bbc.com/sport/football/teams/arsenal/fixtures'
 
 
 class Soup(object):
-
+#need to put some error handling here
     def __init__(self, url):
         html = urlopen(url).read()
         self.page = BeautifulSoup(html, 'lxml')

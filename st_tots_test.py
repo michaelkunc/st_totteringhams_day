@@ -70,16 +70,16 @@ class TOTSTESTS(unittest.TestCase):
         st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days)
         self.assertEqual(st_tots.Messages.st_tots_message() + 'Sat 2 Apr', st_tots.simulate_remaining_season(TOTSTESTS.arsenal, TOTSTESTS.spurs, TOTSTESTS.match_days))
 
-    # def test_simulate_remaining_season_end_of_season(self):
+    def test_simulate_remaining_season_end_of_season(self):
         # stubbing attributes to trigger the elif condition
-        # arsenal = st_tots.Team('Arsenal', TOTSTESTS.table_soup)
-        # arsenal.games_played = 38
-        # arsenal.points = 0
-        # spurs = st_tots.Team('Tottenham Hotspur', TOTSTESTS.table_soup)
-        # spurs.games_played = 38
-        # spurs.points = 0
-        # self.assertEqual(st_tots.Messages.end_of_season_message(
-        # ), st_tots.simulate_remaining_season(arsenal, spurs))
+        arsenal = st_tots.Team('Arsenal', TOTSTESTS.table_soup)
+        arsenal.games_played = 38
+        arsenal.points = 0
+        spurs = st_tots.Team('Tottenham Hotspur', TOTSTESTS.table_soup)
+        spurs.games_played = 38
+        spurs.points = 0
+        self.assertEqual(st_tots.Messages.end_of_season_message(
+        ), st_tots.simulate_remaining_season(arsenal, spurs, TOTSTESTS.match_days))
 
 
 if __name__ == '__main__':
