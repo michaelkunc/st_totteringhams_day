@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
-import re
+
 
 TABLE_URL = "http://www.premierleague.com/en-gb/matchday/league-table.html"
 TABLE_INDEXES = {'points': -1, 'games_played': 5}
@@ -46,13 +46,16 @@ class Team(object):
 
 class Matchdays(object):
 
-    @classmethod
-    def get_matches(self, soup_object):
-        return [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
+    def __init__(self, soup_object):
+        self.matches = [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
+
+    # @classmethod
+    # def get_matches(self, soup_object):
+    #     return [e.text.strip() for e in soup_object.page.findAll('td', class_='match-date')]
 
 
 class Messages(object):
-    st_tots = 'we have achieved St tots'
+    st_tots = 'The earliest matchday for St Tots is '
     end_of_season = "it's the end of the season"
 
     @classmethod
@@ -62,6 +65,10 @@ class Messages(object):
     @classmethod
     def end_of_season_message(cls):
         return cls.end_of_season
+
+    @classmethod
+    def list_element_to_string(self, element):
+        return str(element)
 
 
 def st_tots(arsenal, spurs):
@@ -74,10 +81,10 @@ def end_of_season(arsenal, spurs):
         return True
 
 
-def simulate_remaining_season(arsenal, spurs):
+def simulate_remaining_season(arsenal, spurs, match):
     if st_tots(arsenal, spurs) == True:
-        message = Messages.st_tots_message()
-        return message
+        # date = str(match.matches[0])
+        return Messages.st_tots_message()  + Messages.list_element_to_string(match.matches[0])
     elif end_of_season(arsenal, spurs) == True:
         message = Messages.end_of_season_message()
         return message
@@ -85,7 +92,8 @@ def simulate_remaining_season(arsenal, spurs):
         arsenal.points += 3
         arsenal.games_played += 1
         spurs.games_played += 1
-        return simulate_remaining_season(arsenal, spurs)
+        return simulate_remaining_season(arsenal, spurs, match)
+
 
 
 # runner code
@@ -99,3 +107,6 @@ def simulate_remaining_season(arsenal, spurs):
 # matches = Matchdays.get_matches(match_soup)
 
 # print matches
+# print '-------------------'
+# print arsenal
+# print spurs
